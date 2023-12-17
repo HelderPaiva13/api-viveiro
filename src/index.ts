@@ -1,15 +1,27 @@
 import express from 'express';
 import cors from 'cors';
+import { PrismaClient } from '@prisma/client';
+import dotenv from 'dotenv'
+dotenv.config();
 
 const app = express();
+const prisma = new PrismaClient();
+
 
 app.use(express.json());
 app.use(cors());
 
 app.get('/api/viveiro', async (req, res)=> {
-  res.json({message: 'sucesso'});
+  try {
+    const a = await prisma.$connect();
+    res.json({message: 'sucesso'+a});
+  } catch (error) {
+    res.json(JSON.stringify(error))
+  }
 });
 
-app.listen(5000, ()=> {
-  console.log('server running on localhost: 5000');
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, ()=> {
+  console.log(`server running on localhost: ${PORT}`);
 })
