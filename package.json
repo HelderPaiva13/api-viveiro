@@ -4,7 +4,7 @@
   "description": "api para o menu online viveiro-paiva",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon ./src/index.ts",
+    "start": "node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Helder Paiva",
